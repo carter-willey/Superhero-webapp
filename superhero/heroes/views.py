@@ -11,6 +11,8 @@ def index(request):
     return render(request, 'heroes/index.html', context)
 
 def detail(request, hero_id):
-    #TODO
-    #find single object by primary key
-    pass
+    specific_hero = Hero.objects.get(pk=hero_id)
+    context = {
+        'specific_hero': specific_hero
+    }
+    return  render(request, 'heroes/index.html', context)

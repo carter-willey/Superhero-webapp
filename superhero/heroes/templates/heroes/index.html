@@ -8,9 +8,18 @@
     <title>Document</title>
 </head>
 <body>
+{% if specific_hero == None %}
 <h1>List of Super Heroes</h1>
+{% endif %}
+
 {% if specific_hero != None %}
-<h1>{{specific_hero.name}}</h1>
+    <h1>{{specific_hero.name}}</h1>
+    <ul>
+          <li>Alter Ego: {{specific_hero.alter_ego}}</li>
+          <li>Primary Ability: {{specific_hero.primary_ability}}</li>
+          <li>Secondary Ability: {{specific_hero.secondary_ability}}</li>
+          <li>Catchphrase:  "{{specific_hero.catchphrase}}"</li>
+    </ul>
 {% endif %}
 <ul>
     {% for hero in all_heroes %}

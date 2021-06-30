@@ -17,8 +17,9 @@
     <ul>
           <li>Alter Ego: {{specific_hero.alter_ego}}</li>
           <li>Primary Ability: {{specific_hero.primary_ability}}</li>
-          <li>Secondary Ability: {{specific_hero.secondary_ability}}</li>
+          <li>Secondary Ability: {{specific_hero.secondary_ability}}/li>
           <li>Catchphrase:  "{{specific_hero.catchphrase}}"</li>
+            <li> <a href="{% url 'heroes:edit' specific_hero.id %}">Edit</a></li>
     </ul>
 {% endif %}
 <ul>

@@ -35,3 +35,19 @@ def create(request):
         return HttpResponseRedirect(reverse('heroes:index'))
     else:
         return render(request, 'heroes/create.html')
+
+def edit(request, specific_hero_id):
+    specific_hero = Hero.objects.get(pk=specific_hero_id)
+    context = {
+        'specific_hero': specific_hero
+    }
+    if request.method == 'post':
+        specific_hero.name = request.POST.get('name')
+        specific_hero.alter_ego = request.POST.get('alter_ego')
+        specific_hero.primary = request.POST.get('primary_ability')
+        specific_hero.secondary = request.POST.get('secondary_ability')
+        specific_hero.catchphrase = request.POST.get('catchphrase')
+        specific_hero.save()
+        return HttpResponseRedirect(reverse('heroes:index'))
+    else:
+        return render(request, 'heroes/edit.html', context)

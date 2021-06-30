@@ -5,35 +5,50 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>The Super Hero List!</title>
 </head>
 <body>
-{% if specific_hero == None%}
-{% load static %}
-<img src="{% static 'heroes/wolverine.jpg' %}" alt="Wolverine!!!">
-{% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm-6">
+            {% if specific_hero == None%}
+            {% load static %}
+            <img src="{% static 'heroes/wolverine.jpg' %}" alt="Wolverine!!!" width="50%">
+            {% endif %}
+        </div>
+        <div class="col-sm"></div>
+        </div>
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm-6">
+            {% if Hero.objects != None %}
+            <h1>List of Super Heroes</h1>
+            {% endif %}
 
-{% if Hero.objects != None %}
-<h1>List of Super Heroes</h1>
-{% endif %}
 
+            {% if specific_hero != None %}
+                <h1>{{specific_hero.name}}</h1>
+                <ul>
+                      <li>Alter Ego: {{specific_hero.alter_ego}}</li>
+                      <li>Primary Ability: {{specific_hero.primary_ability}}</li>
+                      <li>Secondary Ability: {{specific_hero.secondary_ability}}</li>
+                      <li>Catchphrase:  "{{specific_hero.catchphrase}}"</li>
+                      <li> <a href="{% url 'heroes:edit' specific_hero.id %}">Edit</a> &emsp;&emsp;<a href="{% url 'heroes:delete' specific_hero.id %}">Delete</a>&emsp;&emsp;
+                      <a href="{% url 'heroes:index' %}">View All Heroes List</a> </li>
+                </ul>
+            {% endif %}
+            <ul>
+                {% for hero in all_heroes %}
+                <li><h2>{{hero.name}}</h2><a href="{% url 'heroes:detail' hero.id %}">See more info</a></li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'heroes:create_new_hero' %}">Add a hero to list of heroes!</a>
 
-{% if specific_hero != None %}
-    <h1>{{specific_hero.name}}</h1>
-    <ul>
-          <li>Alter Ego: {{specific_hero.alter_ego}}</li>
-          <li>Primary Ability: {{specific_hero.primary_ability}}</li>
-          <li>Secondary Ability: {{specific_hero.secondary_ability}}</li>
-          <li>Catchphrase:  "{{specific_hero.catchphrase}}"</li>
-          <li> <a href="{% url 'heroes:edit' specific_hero.id %}">Edit</a> &emsp;&emsp;<a href="{% url 'heroes:delete' specific_hero.id %}">Delete</a>&emsp;&emsp;
-          <a href="{% url 'heroes:index' %}">View All Heroes List</a> </li>
-    </ul>
-{% endif %}
-<ul>
-    {% for hero in all_heroes %}
-    <li><h2>{{hero.name}}</h2><a href="{% url 'heroes:detail' hero.id %}">See more info</a></li>
-    {% endfor %}
-</ul>
-<a href="{% url 'heroes:create_new_hero' %}">Add a hero to list of heroes!</a>
+            </div>
+            <div class="col-sm"></div>
+        </div>
+    </div>
 </body>
 </html>

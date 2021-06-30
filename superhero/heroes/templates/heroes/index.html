@@ -25,7 +25,8 @@
           <li>Primary Ability: {{specific_hero.primary_ability}}</li>
           <li>Secondary Ability: {{specific_hero.secondary_ability}}</li>
           <li>Catchphrase:  "{{specific_hero.catchphrase}}"</li>
-            <li> <a href="{% url 'heroes:edit' specific_hero.id %}">Edit</a> &emsp;&emsp;<a href="{% url 'heroes:delete' specific_hero.id %}">Delete</a> </li>
+          <li> <a href="{% url 'heroes:edit' specific_hero.id %}">Edit</a> &emsp;&emsp;<a href="{% url 'heroes:delete' specific_hero.id %}">Delete</a>&emsp;&emsp;
+          <a href="{% url 'heroes:index' %}">View All Heroes List</a> </li>
     </ul>
 {% endif %}
 <ul>
